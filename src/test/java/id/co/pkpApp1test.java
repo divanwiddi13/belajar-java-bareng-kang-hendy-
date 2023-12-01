@@ -119,7 +119,7 @@ public void testcheckHTTPS(){
 
         page.close();
         browser.close();
-        playwright.close();
+
     }
 }
 
