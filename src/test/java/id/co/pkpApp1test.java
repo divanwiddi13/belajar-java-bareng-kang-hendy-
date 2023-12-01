@@ -98,7 +98,7 @@ public void testcheckHTTPS(){
     }
 
     @Test
-    @DisplayName("soft Assertion Test")
+    @DisplayName("Soft Assertion Test")
     public void softAssertionTest() {
         Playwright playwright = Playwright.create();
         BrowserContext browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false))
@@ -119,7 +119,7 @@ public void testcheckHTTPS(){
 
         page.close();
         browser.close();
-
+        playwright.close();
     }
 }
 
