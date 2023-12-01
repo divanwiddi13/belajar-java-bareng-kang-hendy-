@@ -209,5 +209,22 @@ public void testcheckHTTPS(){
         browser.close();
         playwright.close();
     }
+
+    @Test
+    @DisplayName("How To Refresh Page")
+    public void HowToRefreshPage() {
+        Playwright playwright = Playwright.create();
+        BrowserContext browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false))
+                .newContext();
+        Page page = browser.newPage();
+        page.navigate("http://autopract.com/selenium/popup/");
+        page.reload();
+        page.locator("//a[normalize-space()='JQuery Popup Model']").click();
+        String textContent = page.locator("//p[normalize-space()='This is Sample Popup.']").textContent();
+        System.out.println(textContent);
+        page.close();
+        browser.close();
+        playwright.close();
+    }
 }
 
