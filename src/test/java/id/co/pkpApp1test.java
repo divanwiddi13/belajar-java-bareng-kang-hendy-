@@ -121,5 +121,25 @@ public void testcheckHTTPS(){
         browser.close();
         playwright.close();
     }
+
+    @Test
+    @DisplayName("Assetion Title Test")
+    public void assertionTitleTest() {
+        Playwright playwright = Playwright.create();
+        BrowserContext browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false))
+                .newContext();
+        Page page = browser.newPage();
+        page.navigate("http://www.programsbuzz.com");
+        String title = page.title();
+        String expectedTitle = "ProgramsBuzz - Online Technical Courses";
+        if (title.equalsIgnoreCase(expectedTitle)) {
+            System.out.println("Title Match Verfied");
+        } else {
+            System.out.println("Not a match!!");
+        }
+        page.close();
+        browser.close();
+        playwright.close();
+    }
 }
 
