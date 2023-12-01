@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.awt.*;
+
 public class pkpApp1test {
     @Test
     @DisplayName ("Test Web google")
@@ -222,6 +224,24 @@ public void testcheckHTTPS(){
         page.locator("//a[normalize-space()='JQuery Popup Model']").click();
         String textContent = page.locator("//p[normalize-space()='This is Sample Popup.']").textContent();
         System.out.println(textContent);
+        page.close();
+        browser.close();
+        playwright.close();
+    }
+
+    @Test
+    @DisplayName("Maximize Browser")
+    public void MaximizeBrowserTest() {
+        Playwright playwright = Playwright.create();
+        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        browser.newContext(new Browser.NewContextOptions().setViewportSize(800, 600));
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        double width = screenSize.getWidth();
+        double height = screenSize.getHeight();
+
+        Page page = browser.newPage();
+        page.navigate("https://www.google.com/");
         page.close();
         browser.close();
         playwright.close();
