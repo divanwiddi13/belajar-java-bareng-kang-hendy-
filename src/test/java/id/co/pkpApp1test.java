@@ -159,5 +159,42 @@ public void testcheckHTTPS(){
         browser.close();
         playwright.close();
     }
+
+    @Test
+    @DisplayName("Get Current URL Test")
+    public void GetCurrentURLJava() {
+        Playwright playwright = Playwright.create();
+        BrowserContext browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false))
+                .newContext();
+        Page page = browser.newPage();
+        page.navigate("http://www.programsbuzz.com/user/login");
+        page.locator("#edit-name").type("Naruto");
+        page.locator("#edit-pass").type("uzumaki");
+
+        String currentUrl = page.url();
+        System.out.println(currentUrl);
+
+        page.close();
+        browser.close();
+        playwright.close();
+
+    }
+
+    @Test
+    @DisplayName("Click Browser Back and Forward Button Test Case")
+    public void ClickBrowserBackandForwardButtonTestCase() {
+        Playwright playwright = Playwright.create();
+        BrowserContext browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false))
+                .newContext();
+        Page page = browser.newPage();
+        page.navigate("https://www.programsbuzz.com");
+        page.locator("#edit-submit--3").click();
+        page.locator("//input[@id='edit-keys']").type("Playwright");
+        page.locator("//input[@id='edit-submit']").click();
+        page.goBack();
+        page.goForward();
+        browser.close();
+        playwright.close();
+    }
 }
 
