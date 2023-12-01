@@ -17,6 +17,8 @@ public class pkpApp1test {
         Page page = browser.newPage();
         page.navigate("https://www.google.com/");
         System.out.println("Page Title nya adalah:"+page.title());
+        browser.close();
+        playwright.close();
     }
 @Test
 @DisplayName("Check URL or Check HTTPS")
