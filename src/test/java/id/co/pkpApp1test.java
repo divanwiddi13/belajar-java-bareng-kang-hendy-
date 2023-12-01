@@ -196,5 +196,18 @@ public void testcheckHTTPS(){
         browser.close();
         playwright.close();
     }
+
+    @Test
+    @DisplayName("Navigate to URL")
+    public void NavigatetoURL() {
+        Playwright playwright = Playwright.create();
+        BrowserContext browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false))
+                .newContext();
+        Page page = browser.newPage();
+        page.navigate("http://autopract.com/selenium/upload1/");
+        page.close();
+        browser.close();
+        playwright.close();
+    }
 }
 
