@@ -547,6 +547,12 @@ public class pkpApp1test {
         });
         popUp.waitForLoadState();
         System.out.println(popUp.title());
+
+        page.navigate("http://autopract.com/selenium/popup/");
+        page.locator("//a[normalize-space()='JQuery Popup Model']").click();
+        String textContent = page.locator("//p[normalize-space()='This is Sample Popup.']").textContent();
+        System.out.println(textContent);
+
         page.close();
         browser.close();
         playwright.close();
