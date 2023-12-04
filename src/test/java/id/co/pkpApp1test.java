@@ -11,19 +11,20 @@ import java.util.List;
 
 public class pkpApp1test {
     @Test
-    @DisplayName ("Test Web google")
+    @DisplayName("Test Web google")
     public void test1() {
         Playwright playwright = Playwright.create();
         Browser browser = playwright.chromium().launch();
         Page page = browser.newPage();
         page.navigate("https://www.google.com/");
-        System.out.println("Page Title nya adalah:"+page.title());
+        System.out.println("Page Title nya adalah:" + page.title());
         browser.close();
         playwright.close();
     }
-@Test
-@DisplayName("Check URL or Check HTTPS")
-public void testcheckHTTPS(){
+
+    @Test
+    @DisplayName("Check URL or Check HTTPS")
+    public void testcheckHTTPS() {
         Playwright playwright = Playwright.create();
         Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
         Page page = browser.newPage();
@@ -42,7 +43,7 @@ public void testcheckHTTPS(){
 
     @Test
     @DisplayName("Check Place Holder")
-    public void checkPlaceHolder (){
+    public void checkPlaceHolder() {
         Playwright playwright = Playwright.create();
         Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
         Page page = browser.newPage();
@@ -62,9 +63,10 @@ public void testcheckHTTPS(){
         browser.close();
         playwright.close();
     }
-@Test
-@DisplayName("Assert Checkbox")
-    public void assertCheckBox(){
+
+    @Test
+    @DisplayName("Assert Checkbox")
+    public void assertCheckBox() {
         Playwright playwright = Playwright.create();
         Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
         Page page = browser.newPage();
@@ -77,7 +79,7 @@ public void testcheckHTTPS(){
         } else {
             System.out.println("Attribute value is incorrect.");
         }
-    page.close();
+        page.close();
         browser.close();
         playwright.close();
     }
@@ -317,10 +319,26 @@ public void testcheckHTTPS(){
         page.locator("#edit-name").type("Naruto");
         page.locator("#edit-pass").type("uzumaki");
         page.locator("#edit-pass").type("Sasuke");
+        page.locator("#edit-pass").click();
 
         page.close();
         browser.close();
         playwright.close();
     }
+
+    @Test
+    @DisplayName("Nth Element Selector")
+    public void NthElementSelector() {
+        Playwright playwright = Playwright.create();
+        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        Page page = browser.newPage();
+        page.navigate("http://autopract.com/selenium/dropdown1/");
+        page.selectOption(".custom-select", "item2");
+
+        page.close();
+        browser.close();
+        playwright.close();
+    }
+
 }
 
