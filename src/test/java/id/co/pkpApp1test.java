@@ -399,6 +399,11 @@ public class pkpApp1test {
         page.navigate("http://autopract.com/selenium/form5//");
         page.locator("//input[@value='four']").uncheck();
 
+        // check dan uncheck radio button
+        page.navigate("http://autopract.com/selenium/form5/");
+        page.locator("input[value='CA']").click();
+        page.locator("input[value='mac']").check();
+
         page.close();
         browser.close();
         playwright.close();
