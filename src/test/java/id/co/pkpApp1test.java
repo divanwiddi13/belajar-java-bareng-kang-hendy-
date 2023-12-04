@@ -335,10 +335,21 @@ public class pkpApp1test {
         page.navigate("http://autopract.com/selenium/dropdown1/");
         page.selectOption(".custom-select", "item2");
 
+        // Dynamic Dropdown
+        page.navigate("http://autopract.com/selenium/dropdown4/");
+        page.locator("//span[@class='caret']").click();
+        Locator countries = page.locator("//div[@role='combobox']");
+        List<String> allInnerTexts = countries.allInnerTexts();
+
+        allInnerTexts.forEach(System.out::println);
+
         page.close();
         browser.close();
         playwright.close();
     }
 
+
 }
+
+
 
