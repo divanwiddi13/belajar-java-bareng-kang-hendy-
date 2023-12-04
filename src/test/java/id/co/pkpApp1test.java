@@ -392,15 +392,15 @@ public class pkpApp1test {
         page.locator("//input[@value='two']").click();
 
         // using check
-        page.navigate("http://autopract.com/selenium/form5//");
+        //  page.navigate("http://autopract.com/selenium/form5//");
         page.locator("//input[@value='four']").check();
 
         // using uncheck
-        page.navigate("http://autopract.com/selenium/form5//");
+        //  page.navigate("http://autopract.com/selenium/form5//");
         page.locator("//input[@value='four']").uncheck();
 
         // check dan uncheck radio button
-        page.navigate("http://autopract.com/selenium/form5/");
+        //   page.navigate("http://autopract.com/selenium/form5/");
         page.locator("input[value='CA']").click();
         page.locator("input[value='mac']").check();
 
@@ -409,6 +409,23 @@ public class pkpApp1test {
         playwright.close();
     }
 
+    @Test
+    @DisplayName("Handle Frame")
+    public void HandleFrame() {
+        Playwright playwright = Playwright.create();
+        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        Page page = browser.newPage();
+        page.navigate("http://https://the-internet.herokuapp.com/nested_frames");
+
+        FrameLocator middleFrame = page.frameLocator("//frame[@src='message.htm']");
+
+        middleFrame.locator("//input[@name='name']").type("Naruto Uzumaki");
+        middleFrame.locator("//textarea[@name='suggestions']").type("I Am Inside The Frame");
+
+        page.close();
+        browser.close();
+        playwright.close();
+    }
 }
 
 
