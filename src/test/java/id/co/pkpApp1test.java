@@ -248,5 +248,38 @@ public void testcheckHTTPS(){
         browser.close();
         playwright.close();
     }
+
+    @Test
+    @DisplayName("getfistandlastelemet")
+    public void getfistandlastelemetTest() {
+        Playwright playwright = Playwright.create();
+        BrowserContext browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false))
+                .newContext();
+        Page page = browser.newPage();
+        page.navigate("https://www.programsbuzz.com/search/node?keys=playwright+java");
+        Locator listEle = page.locator("//h3[@class='search-result__title']");
+        listEle.first().click();
+
+        page.navigate("https://www.programsbuzz.com/search/node?keys=playwright+java");
+        Locator listEle2 = page.locator("//h3[@class='search-result__title']");
+        listEle2.nth(0).click();
+
+        page.navigate("https://www.programsbuzz.com/search/node?keys=playwright+java");
+        Locator listEle3 = page.locator("//h3[@class='search-result__title']");
+        listEle3.last().click();
+
+        page.navigate("https://www.programsbuzz.com/search/node?keys=playwright+java");
+        Locator listEle4 = page.locator("//h3[@class='search-result__title']");
+        listEle4.nth(0).click();
+
+        page.close();
+        browser.close();
+        playwright.close();
+
+
+    }
+
+
+}
 }
 
