@@ -531,5 +531,26 @@ public class pkpApp1test {
         newContext.close();
         playwright.close();
     }
+
+    @Test
+    @DisplayName("Handle PopUp")
+    public void HandlePopUp() {
+        Playwright playwright = Playwright.create();
+        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        BrowserContext newContext = browser.newContext(
+                new Browser.NewContextOptions().setRecordVideoDir(Paths.get("Videos/")).setRecordVideoSize(1280, 720));
+        Page page = newContext.newPage();
+        page.navigate("http://autopract.com/selenium/popup/");
+
+        Page popUp = page.waitForPopup(() -> {
+            page.locator("//a[normalize-space()='Open Link in Popup']").click();
+        });
+        popUp.waitForLoadState();
+        System.out.println(popUp.title());
+        page.close();
+        browser.close();
+        playwright.close();
+
+    }
 }
 
