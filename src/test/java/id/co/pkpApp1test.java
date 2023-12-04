@@ -348,8 +348,62 @@ public class pkpApp1test {
         playwright.close();
     }
 
+    @Test
+    @DisplayName("Auto Complate Test")
+    public void AutoComplateTest() {
+        Playwright playwright = Playwright.create();
+        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        Page page = browser.newPage();
+
+        String expectedText = "Indonesia";
+
+        page.navigate("https://demo.automationtesting.in/AutoComplete.html");
+        Locator autoC = page
+                .locator("//div[@class='ui-autocomplete-multiselect ui-state-default ui-widget ui-state-active']");
+        int autoCcount = autoC.count();
+        System.out.println("autoCcount: " + autoCcount);
+
+        page.pause();
+
+        for (int i = 0; i < autoCcount; i++) {
+
+            String autoCText = autoC.nth(i).textContent();
+            if (autoCText == expectedText) {
+
+                autoC.nth(i).click();
+                break;
+
+            }
+        }
+        page.close();
+        browser.close();
+        playwright.close();
+    }
+
+    @Test
+    @DisplayName("Check and Uncheck Checkbox")
+    public void CheckandUncheckCheckbox() {
+        Playwright playwright = Playwright.create();
+        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        Page page = browser.newPage();
+
+        // using click
+        page.navigate("http://autopract.com/selenium/form5//");
+        page.locator("//input[@value='two']").click();
+
+        // using check
+        page.navigate("http://autopract.com/selenium/form5//");
+        page.locator("//input[@value='four']").check();
+
+        // using uncheck
+        page.navigate("http://autopract.com/selenium/form5//");
+        page.locator("//input[@value='four']").uncheck();
+
+        page.close();
+        browser.close();
+        playwright.close();
+    }
 
 }
-
 
 
