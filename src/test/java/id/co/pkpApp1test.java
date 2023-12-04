@@ -513,5 +513,23 @@ public class pkpApp1test {
         newContext.close();
         playwright.close();
     }
+
+    @Test
+    @DisplayName("Handle Alert Promt")
+    public void HandleAlertPromt() {
+        Playwright playwright = Playwright.create();
+        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        BrowserContext newContext = browser.newContext(
+                new Browser.NewContextOptions().setRecordVideoDir(Paths.get("Videos/")).setRecordVideoSize(1280, 720));
+        Page page = newContext.newPage();
+        page.navigate("http://autopract.com/selenium/alert5/");
+        page.onDialog(dialog -> {
+            dialog.accept("20");
+        });
+        page.locator("#prompt-button").click();
+
+        newContext.close();
+        playwright.close();
+    }
 }
 
