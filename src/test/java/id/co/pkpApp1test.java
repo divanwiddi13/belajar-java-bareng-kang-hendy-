@@ -577,5 +577,21 @@ public class pkpApp1test {
         playwright.close();
 
     }
+
+    @Test
+    @DisplayName("Upload File in Playwright")
+    public void uploadfileTest() {
+
+        Playwright playwright = Playwright.create();
+        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        Page page = browser.newPage();
+        page.navigate("http://autopract.com/selenium/upload1/");
+        page.setInputFiles("//input[@type='file']",
+                Paths.get("C:\\QUALITY ASSURANCE\\VM VERIFICATION\\26-01-2024\\10user.png"));
+        page.close();
+        browser.close();
+        playwright.close();
+
+    }
 }
 
