@@ -593,5 +593,24 @@ public class pkpApp1test {
         playwright.close();
 
     }
+
+    @Test
+    @DisplayName("Upload File in Playwright test2")
+    public void UploadFileTest2() {
+        Playwright playwright = Playwright.create();
+        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(200));
+        BrowserContext context = browser.newContext(new Browser.NewContextOptions().setAcceptDownloads(true));
+        Page page = context.newPage();
+        page.navigate("https://the-internet.herokuapp.com/upload");
+        FileChooser fileChooser = page.waitForFileChooser(() -> page.click("#file-upload"));
+        fileChooser.setFiles(Paths.get("C:\\QUALITY ASSURANCE\\VM VERIFICATION\\26-01-2024\\10user.png"));
+        page.waitForLoadState();
+        System.out.println(page.locator("#upload-file").textContent());
+        page.pause();
+
+        page.close();
+        browser.close();
+        playwright.close();
+    }
 }
 
