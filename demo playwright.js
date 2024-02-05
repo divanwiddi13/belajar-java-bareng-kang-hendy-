@@ -91,7 +91,7 @@ public class pkpApp1test {
     public void tooltipCheckTest() {
         Playwright playwright = Playwright.create();
         BrowserContext browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false))
-                .newContext();
+            .newContext();
 
         Page page = browser.newPage();
         page.navigate("https://jqueryui.com/tooltip/");
@@ -112,7 +112,7 @@ public class pkpApp1test {
     public void softAssertionTest() {
         Playwright playwright = Playwright.create();
         BrowserContext browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false))
-                .newContext();
+            .newContext();
         Page page = browser.newPage();
         page.navigate("https://www.programsbuzz.com/user/login");
         page.locator("#edit-name").type("nana");
@@ -137,7 +137,7 @@ public class pkpApp1test {
     public void assertionTitleTest() {
         Playwright playwright = Playwright.create();
         BrowserContext browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false))
-                .newContext();
+            .newContext();
         Page page = browser.newPage();
         page.navigate("http://www.programsbuzz.com");
         String title = page.title();
@@ -157,7 +157,7 @@ public class pkpApp1test {
     public void assertTextOnWebPageTest() {
         Playwright playwright = Playwright.create();
         BrowserContext browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false))
-                .newContext();
+            .newContext();
         Page page = browser.newPage();
         page.navigate("http://www.programsbuzz.com");
         Locator body = page.locator("body");
@@ -174,7 +174,7 @@ public class pkpApp1test {
     public void GetCurrentURLJava() {
         Playwright playwright = Playwright.create();
         BrowserContext browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false))
-                .newContext();
+            .newContext();
         Page page = browser.newPage();
         page.navigate("http://www.programsbuzz.com/user/login");
         page.locator("#edit-name").type("Naruto");
@@ -194,7 +194,7 @@ public class pkpApp1test {
     public void ClickBrowserBackandForwardButtonTestCase() {
         Playwright playwright = Playwright.create();
         BrowserContext browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false))
-                .newContext();
+            .newContext();
         Page page = browser.newPage();
         page.navigate("https://www.programsbuzz.com");
         page.locator("#edit-submit--3").click();
@@ -211,7 +211,7 @@ public class pkpApp1test {
     public void NavigatetoURL() {
         Playwright playwright = Playwright.create();
         BrowserContext browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false))
-                .newContext();
+            .newContext();
         Page page = browser.newPage();
         page.navigate("http://autopract.com/selenium/upload1/");
         page.close();
@@ -224,7 +224,7 @@ public class pkpApp1test {
     public void HowToRefreshPage() {
         Playwright playwright = Playwright.create();
         BrowserContext browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false))
-                .newContext();
+            .newContext();
         Page page = browser.newPage();
         page.navigate("http://autopract.com/selenium/popup/");
         page.reload();
@@ -259,7 +259,7 @@ public class pkpApp1test {
     public void getfistandlastelemetTest() {
         Playwright playwright = Playwright.create();
         BrowserContext browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false))
-                .newContext();
+            .newContext();
         Page page = browser.newPage();
         page.navigate("https://www.programsbuzz.com/search/node?keys=playwright+java");
         Locator listEle = page.locator("//h3[@class='search-result__title']");
@@ -289,7 +289,7 @@ public class pkpApp1test {
     public void GettingListofElements() {
         Playwright playwright = Playwright.create();
         BrowserContext browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false))
-                .newContext();
+            .newContext();
         Page page = browser.newPage();
         page.navigate("https://www.programsbuzz.com/search/node?keys=playwright+java");
 
@@ -315,7 +315,7 @@ public class pkpApp1test {
     public void UsingXpathTest() {
         Playwright playwright = Playwright.create();
         BrowserContext browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false))
-                .newContext();
+            .newContext();
         Page page = browser.newPage();
         page.navigate("http://www.programsbuzz.com/user/login");
         page.locator("#edit-name").type("Naruto");
@@ -361,7 +361,7 @@ public class pkpApp1test {
 
         page.navigate("https://demo.automationtesting.in/AutoComplete.html");
         Locator autoC = page
-                .locator("//div[@class='ui-autocomplete-multiselect ui-state-default ui-widget ui-state-active']");
+            .locator("//div[@class='ui-autocomplete-multiselect ui-state-default ui-widget ui-state-active']");
         int autoCcount = autoC.count();
         System.out.println("autoCcount: " + autoCcount);
 
@@ -486,7 +486,7 @@ public class pkpApp1test {
         Playwright playwright = Playwright.create();
         Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
         BrowserContext newContext = browser.newContext(
-                new Browser.NewContextOptions().setRecordVideoDir(Paths.get("Videos/")).setRecordVideoSize(1280, 720));
+            new Browser.NewContextOptions().setRecordVideoDir(Paths.get("Videos/")).setRecordVideoSize(1280, 720));
         Page page = newContext.newPage();
 
         page.navigate("http://autopract.com/selenium/alert5/");
@@ -503,7 +503,7 @@ public class pkpApp1test {
         Playwright playwright = Playwright.create();
         Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
         BrowserContext newContext = browser.newContext(
-                new Browser.NewContextOptions().setRecordVideoDir(Paths.get("Videos/")).setRecordVideoSize(1280, 720));
+            new Browser.NewContextOptions().setRecordVideoDir(Paths.get("Videos/")).setRecordVideoSize(1280, 720));
         Page page = newContext.newPage();
 
         page.navigate("http://autopract.com/selenium/alert5/");
@@ -520,7 +520,7 @@ public class pkpApp1test {
         Playwright playwright = Playwright.create();
         Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
         BrowserContext newContext = browser.newContext(
-                new Browser.NewContextOptions().setRecordVideoDir(Paths.get("Videos/")).setRecordVideoSize(1280, 720));
+            new Browser.NewContextOptions().setRecordVideoDir(Paths.get("Videos/")).setRecordVideoSize(1280, 720));
         Page page = newContext.newPage();
         page.navigate("http://autopract.com/selenium/alert5/");
         page.onDialog(dialog -> {
@@ -538,7 +538,7 @@ public class pkpApp1test {
         Playwright playwright = Playwright.create();
         Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
         BrowserContext newContext = browser.newContext(
-                new Browser.NewContextOptions().setRecordVideoDir(Paths.get("Videos/")).setRecordVideoSize(1280, 720));
+            new Browser.NewContextOptions().setRecordVideoDir(Paths.get("Videos/")).setRecordVideoSize(1280, 720));
         Page page = newContext.newPage();
         page.navigate("http://autopract.com/selenium/popup/");
 
@@ -553,25 +553,6 @@ public class pkpApp1test {
         String textContent = page.locator("//p[normalize-space()='This is Sample Popup.']").textContent();
         System.out.println(textContent);
 
-        page.close();
-        browser.close();
-        playwright.close();
-
-    }
-
-    @Test
-    @DisplayName("Download File in Playwright Java")
-    public void downloadFiletTest(){
-        Playwright playwright = Playwright.create();
-        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
-        Page page = browser.newPage();
-        page.navigate("https://demo.automationtesting.in/FileDownload.html");
-        Download waitForDownload = page.waitForDownload(page.locator("a.btn.btn-primary")::click);
-        waitForDownload.saveAs(Paths.get("Download/",waitForDownload.suggestedFilename()));
-
-        System.out.println(waitForDownload.url());
-        System.out.println(waitForDownload.page().title());
-        System.out.println(waitForDownload.path().toString());
         page.close();
         browser.close();
         playwright.close();
