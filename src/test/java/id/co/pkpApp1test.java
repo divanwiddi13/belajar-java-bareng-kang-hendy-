@@ -676,10 +676,10 @@ public class pkpApp1test {
 
         HashMap<String, String> data = new HashMap<>();
 
-        data.put("name", "Sasuke");
-        data.put("job", "Uciha");
+        data.put("name", "Jarjit");
+        data.put("job", "Tulunggg");
 
-        String response = request.put("https://regres.in/api/users/2", RequestOptions.create().setData(data)).text();
+        String response = request.put("https://reqres.in/api/users/2", RequestOptions.create().setData(data)).text();
         System.out.println(response);
 
         JsonObject j = new Gson().fromJson(response, JsonObject.class);
