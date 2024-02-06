@@ -1,7 +1,10 @@
 package id.co;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.microsoft.playwright.Dialog;
 import com.microsoft.playwright.*;
+import com.microsoft.playwright.options.RequestOptions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.testng.Assert;
@@ -9,6 +12,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.awt.*;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
@@ -563,13 +567,13 @@ public class pkpApp1test {
 
     @Test
     @DisplayName("Download File in Playwright Java")
-    public void downloadFiletTest(){
+    public void downloadFiletTest() {
         Playwright playwright = Playwright.create();
         Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
         Page page = browser.newPage();
         page.navigate("https://demo.automationtesting.in/FileDownload.html");
         Download waitForDownload = page.waitForDownload(page.locator("a.btn.btn-primary")::click);
-        waitForDownload.saveAs(Paths.get("Download/",waitForDownload.suggestedFilename()));
+        waitForDownload.saveAs(Paths.get("Download/", waitForDownload.suggestedFilename()));
 
         System.out.println(waitForDownload.url());
         System.out.println(waitForDownload.page().title());
@@ -633,7 +637,61 @@ public class pkpApp1test {
         browser.close();
         playwright.close();
 
+    }
+
+    @Test
+    @DisplayName("Post API Request using Playwright Java")
+    public void postAPIRequest() {
+        Playwright playwright = Playwright.create();
+        APIRequestContext request = playwright.request().newContext();
+
+        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        Page page = browser.newPage();
+
+        HashMap<String, String> data = new HashMap<>();
+
+        data.put("name", "jarjit");
+        data.put("job", "TULUNGGG");
+
+        String response = request.post("https://reqres.in/api/users", RequestOptions.create().setData(data)).text();
+
+        System.out.println(response);
+
+        JsonObject j = new Gson().fromJson(response, JsonObject.class);
+        System.out.println(j.get("name"));
+
+        page.close();
+        browser.close();
+        playwright.close();
+    }
+
+    @Test
+    @DisplayName("Put API Request using Playwright Java")
+    public void putAPIRequest() {
+        Playwright playwright = Playwright.create();
+        APIRequestContext request = playwright.request().newContext();
+
+        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        Page page = browser.newPage();
+
+        HashMap<String, String> data = new HashMap<>();
+
+        data.put("name", "Sasuke");
+        data.put("job", "Uciha");
+
+        String response = request.put("https://regres.in/api/users/2", RequestOptions.create().setData(data)).text();
+        System.out.println(response);
+
+        JsonObject j = new Gson().fromJson(response, JsonObject.class);
+        System.out.println(j.get("name"));
+        System.out.println(j.get("job"));
+
+        page.close();
+        browser.close();
+        playwright.close();
 
     }
+
 }
+
 
