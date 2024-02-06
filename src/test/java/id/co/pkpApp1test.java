@@ -11,6 +11,8 @@ import java.awt.*;
 import java.nio.file.Paths;
 import java.util.List;
 
+import static junit.framework.Assert.assertEquals;
+
 public class pkpApp1test {
     @Test
     @DisplayName("Test Web google")
@@ -30,9 +32,9 @@ public class pkpApp1test {
         Playwright playwright = Playwright.create();
         Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
         Page page = browser.newPage();
-        page.navigate("http://10.8.11.1:8761/");
+        page.navigate("https://imove-test.fifgroup.co.id/IMOVE2/apps/application/company");
         String currentUrl = page.url();
-        String expectedUrl = "http://10.8.11.1:8761/";
+        String expectedUrl = "https://imove-test.fifgroup.co.id/IMOVE2/apps/application/company";
         if (currentUrl.equals(expectedUrl)) {
             System.out.println("URL is correct: " + currentUrl);
         } else {
@@ -114,9 +116,9 @@ public class pkpApp1test {
         BrowserContext browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false))
                 .newContext();
         Page page = browser.newPage();
-        page.navigate("https://www.programsbuzz.com/user/login");
-        page.locator("#edit-name").type("nana");
-        page.locator("#edit-pass").type("nnv");
+        page.navigate("https://imove-test.fifgroup.co.id/IMOVE2/apps/auth/login");
+        page.locator("#edit-Usercode").type("ADMIN");
+        page.locator("#edit-password").type("ADMIN");
         page.locator("(//input[@type='submit'])[2]").click();
         String actualText = page.locator("//a[normalize-space()='Forgot your password?']").textContent();
         System.out.println(actualText);
@@ -609,11 +611,29 @@ public class pkpApp1test {
         page.click("input:has-text(\"Upload\")");
         page.waitForLoadState();
         System.out.println(page.locator("#uploaded-files").textContent());
-        page.pause();
+        //page.pause();
 
         page.close();
         browser.close();
         playwright.close();
+    }
+
+    @Test
+    @DisplayName("Get API Request using Playwright Java")
+    public void getAPIrequest() {
+        Playwright playwright = Playwright.create();
+        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        Page page = browser.newPage();
+        Response response = page.navigate("https://reqres.in/api/user?page=2");
+        int status = response.status();
+        System.out.println(status);
+        assertEquals(status, 200);
+
+        page.close();
+        browser.close();
+        playwright.close();
+
+
     }
 }
 
