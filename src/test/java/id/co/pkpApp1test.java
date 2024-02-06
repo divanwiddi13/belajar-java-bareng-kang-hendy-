@@ -121,9 +121,9 @@ public class pkpApp1test {
                 .newContext();
         Page page = browser.newPage();
         page.navigate("https://imove-test.fifgroup.co.id/IMOVE2/apps/auth/login");
-        page.locator("#edit-Usercode").type("ADMIN");
-        page.locator("#edit-password").type("ADMIN");
-        page.locator("(//input[@type='submit'])[2]").click();
+        page.locator("#//input[@id='username']").type("ADMIN");
+        page.locator("#//input[@id='password']").type("ADMIN");
+        page.locator("(//body/div[6]/div[1]/div[1]/form[1]/input[1]").click();
         String actualText = page.locator("//a[normalize-space()='Forgot your password?']").textContent();
         System.out.println(actualText);
         String expectedText = "Forgot your password?";
@@ -717,6 +717,28 @@ public class pkpApp1test {
         browser.close();
         playwright.close();
 
+    }
+
+    @Test
+    @DisplayName("Delete API Request using Playwright Java")
+    public void deleteAPIRequest() {
+        Playwright playwright = Playwright.create();
+        APIRequestContext request = playwright.request().newContext();
+
+        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        Page page = browser.newPage();
+
+        HashMap<String, String> data = new HashMap<>();
+
+        data.put("name", "Jarjit");
+        data.put("job", "Tulunggg");
+
+        String response = request.delete("https://reqres.in/api/users/2", RequestOptions.create().setData(data)).text();
+        System.out.println(response);
+
+        page.close();
+        browser.close();
+        playwright.close();
     }
 }
 
